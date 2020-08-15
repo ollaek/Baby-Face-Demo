@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DDB7B72F-7E54-42D2-8363-05E61D71CB28}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Couponz.Lucky.Domain.Model</RootNamespace>
+    <AssemblyName>Couponz.Lucky.Domain.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Device.Portable, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3f6d3f5f65b761a0, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Device.Location.Portable.1.0.0\lib\System.Device.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\AppSettingsKeys.cs" />
+    <Compile Include="Constants\BabyFaceConstants.cs" />
+    <Compile Include="Contracts\IIocContainer.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Helpers\ConfigurationHelper.cs" />
+    <Compile Include="Helpers\EmailTemplateHelper.cs" />
+    <Compile Include="Helpers\GenericHelper.cs" />
+    <Compile Include="Models\Common\ServiceResult.cs" />
+    <Compile Include="Models\Entities\BabyFaceRefreshToken.cs" />
+    <Compile Include="Models\Entities\BabyFaceRefreshTokenClientMaster.cs" />
+    <Compile Include="Models\Entities\BabyFaceUserClaim.cs" />
+    <Compile Include="Models\Entities\BabyFaceUserRole.cs" />
+    <Compile Include="Models\Entities\BasicShape.cs" />
+    <Compile Include="Models\Entities\BookOrder.cs" />
+    <Compile Include="Models\Entities\Character.cs" />
+    <Compile Include="Models\Entities\ClothesShape.cs" />
+    <Compile Include="Models\Entities\EmailConfiguration.cs" />
+    <Compile Include="Models\Entities\EmailAction.cs" />
+    <Compile Include="Models\Entities\EyesShape.cs" />
+    <Compile Include="Models\Entities\FaceAdd.cs" />
+    <Compile Include="Models\Entities\Glass.cs" />
+    <Compile Include="Models\Entities\HairColor.cs" />
+    <Compile Include="Models\Entities\HairCut.cs" />
+    <Compile Include="Models\Entities\ResponseMessageResource.cs" />
+    <Compile Include="Models\Entities\SkinColor.cs" />
+    <Compile Include="ViewModels\Email\EmailConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\Identity\UpdateUserBindingModel.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\AccessTokenViewModel.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\CorrectPhoneNumberInput.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\BabyFaceUserInfo.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\RegistrationCompletionViewModel.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\ResendOtpReturnViewModel.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\ValidateLoginOtpViewModel.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\ValidateRegistrationViewModel.cs" />
+    <Compile Include="ViewModels\RefreshExpiredAccessTokenViewModel.cs" />
+    <Compile Include="ViewModels\RegisterationOtpInfoViewModel.cs" />
+    <Compile Include="Models\Entities\EnvironmentResource.cs" />
+    <Compile Include="Models\Entities\Gender.cs" />
+    <Compile Include="Models\Entities\ImageType.cs" />
+    <Compile Include="Models\Entities\Language.cs" />
+    <Compile Include="Models\Entities\BabyFaceUser.cs" />
+    <Compile Include="Models\Entities\BabyFaceUserLogin.cs" />
+    <Compile Include="Models\Entities\RefreshToken.cs" />
+    <Compile Include="Models\Entities\RoleForBabyFaceUser.cs" />
+    <Compile Include="Models\Entities\Status.cs" />
+    <Compile Include="ViewModels\Identity\AddExternalLoginBindingModel.cs" />
+    <Compile Include="ViewModels\Identity\ChangePasswordBindingModel.cs" />
+    <Compile Include="ViewModels\Identity\ExternalLoginViewModel.cs" />
+    <Compile Include="ViewModels\Identity\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Identity\ManageInfoViewModel.cs" />
+    <Compile Include="ViewModels\Identity\RegisterBindingModel.cs" />
+    <Compile Include="ViewModels\Identity\RegisterExternalBindingModel.cs" />
+    <Compile Include="ViewModels\Identity\RemoveLoginBindingModel.cs" />
+    <Compile Include="ViewModels\Identity\SetPasswordBindingModel.cs" />
+    <Compile Include="ViewModels\Identity\UserInfoViewModel.cs" />
+    <Compile Include="ViewModels\Identity\UserLoginInfoViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Lookups\LookupModel.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\BabyFaceUserProperties.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\ChangePhoneNumberInput.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\VerifyEmailChangeInput.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\ChangeEmailConfirmationInput.cs" />
+    <Compile Include="ViewModels\BabyFaceUser\VerifyPhoneNumberChangeInput.cs" />
+    <Compile Include="ViewModels\PasswordResetOtpVerificationViewModel.cs" />
+    <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\ResponseMessageResource\ResponseMessageResourceDetails.cs" />
+    <Compile Include="ViewModels\ResponseMessageResource\ResponseMessageResourceInputViewModel.cs" />
+    <Compile Include="ViewModels\UserProfile\UserProfileProperties.cs" />
+    <Compile Include="ViewModels\ValidateRegistrationOtpViewModel.cs" />
+    <Compile Include="ViewModels\ValidateResetPasswordBySMSOtpViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\ILookupEntity.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

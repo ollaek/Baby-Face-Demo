@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BabyFaceV0Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BabyFaceV0.dbo.BackgroundImage' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="BackgroundImage">
+          <Property Name="Id" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="SortingNumber" Type="int" />
+          <Property Name="IsCover" Type="bit" />
+          <Property Name="VectorImagePath" Type="nvarchar(max)" />
+          <Property Name="ColoredImagePath" Type="nvarchar(max)" />
+          <Property Name="ThumptailImagePath" Type="nvarchar(max)" />
+        </EntityType>-->
+        <EntityType Name="BasicShape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="BookOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="BabyName" Type="nvarchar(max)" />
+          <Property Name="CoverId" Type="int" />
+          <Property Name="PagesCount" Type="int" />
+          <Property Name="Path" Type="nvarchar(max)" />
+          <Property Name="CharacterId" Type="int" />
+        </EntityType>
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="GenderId" Type="int" />
+          <Property Name="BasicShapeId" Type="int" />
+          <Property Name="HairCutId" Type="int" />
+          <Property Name="SkinColorId" Type="int" />
+          <Property Name="HairColorId" Type="int" />
+          <Property Name="EyesShapeId" Type="int" />
+          <Property Name="GlasseId" Type="int" />
+          <Property Name="FaceAddsId" Type="int" />
+          <Property Name="ClothesShapeId" Type="int" />
+          <Property Name="VectorImagePath" Type="nvarchar(max)" />
+          <Property Name="ColoredImagePath" Type="nvarchar(max)" />
+          <Property Name="Thumptailpath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ClothesShape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="EyesShape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="FaceAdd">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Glass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="HairColor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="HairCut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SkinColor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_BookOrder_Character">
+          <End Role="Character" Type="Self.Character" Multiplicity="0..1" />
+          <End Role="BookOrder" Type="Self.BookOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookOrder">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_BasicShape">
+          <End Role="BasicShape" Type="Self.BasicShape" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasicShape">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="BasicShapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_ClothesShape">
+          <End Role="ClothesShape" Type="Self.ClothesShape" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClothesShape">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="ClothesShapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_EyesShape">
+          <End Role="EyesShape" Type="Self.EyesShape" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EyesShape">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="EyesShapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_FaceAdd">
+          <End Role="FaceAdd" Type="Self.FaceAdd" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FaceAdd">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="FaceAddsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_Glass">
+          <End Role="Glass" Type="Self.Glass" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Glass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="GlasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_HairColor">
+          <End Role="HairColor" Type="Self.HairColor" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HairColor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="HairColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_HairCut">
+          <End Role="HairCut" Type="Self.HairCut" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HairCut">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="HairCutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_SkinColor">
+          <End Role="SkinColor" Type="Self.SkinColor" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkinColor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="SkinColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BabyFaceV0ModelStoreContainer">
+          <EntitySet Name="BasicShape" EntityType="Self.BasicShape" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookOrder" EntityType="Self.BookOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Character" EntityType="Self.Character" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClothesShape" EntityType="Self.ClothesShape" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EyesShape" EntityType="Self.EyesShape" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FaceAdd" EntityType="Self.FaceAdd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Glass" EntityType="Self.Glass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HairColor" EntityType="Self.HairColor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HairCut" EntityType="Self.HairCut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkinColor" EntityType="Self.SkinColor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BookOrder_Character" Association="Self.FK_BookOrder_Character">
+            <End Role="Character" EntitySet="Character" />
+            <End Role="BookOrder" EntitySet="BookOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_BasicShape" Association="Self.FK_Character_BasicShape">
+            <End Role="BasicShape" EntitySet="BasicShape" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_ClothesShape" Association="Self.FK_Character_ClothesShape">
+            <End Role="ClothesShape" EntitySet="ClothesShape" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_EyesShape" Association="Self.FK_Character_EyesShape">
+            <End Role="EyesShape" EntitySet="EyesShape" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_FaceAdd" Association="Self.FK_Character_FaceAdd">
+            <End Role="FaceAdd" EntitySet="FaceAdd" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_Gender" Association="Self.FK_Character_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_Glass" Association="Self.FK_Character_Glass">
+            <End Role="Glass" EntitySet="Glass" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_HairColor" Association="Self.FK_Character_HairColor">
+            <End Role="HairColor" EntitySet="HairColor" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_HairCut" Association="Self.FK_Character_HairCut">
+            <End Role="HairCut" EntitySet="HairCut" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_SkinColor" Association="Self.FK_Character_SkinColor">
+            <End Role="SkinColor" EntitySet="SkinColor" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BabyFaceV0Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BasicShape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_BasicShape" FromRole="BasicShape" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="BookOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BabyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CoverId" Type="Int32" />
+          <Property Name="PagesCount" Type="Int32" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CharacterId" Type="Int32" />
+          <NavigationProperty Name="Character" Relationship="Self.FK_BookOrder_Character" FromRole="BookOrder" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="BasicShapeId" Type="Int32" />
+          <Property Name="HairCutId" Type="Int32" />
+          <Property Name="SkinColorId" Type="Int32" />
+          <Property Name="HairColorId" Type="Int32" />
+          <Property Name="EyesShapeId" Type="Int32" />
+          <Property Name="GlasseId" Type="Int32" />
+          <Property Name="FaceAddsId" Type="Int32" />
+          <Property Name="ClothesShapeId" Type="Int32" />
+          <Property Name="VectorImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ColoredImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Thumptailpath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BasicShape" Relationship="Self.FK_Character_BasicShape" FromRole="Character" ToRole="BasicShape" />
+          <NavigationProperty Name="BookOrders" Relationship="Self.FK_BookOrder_Character" FromRole="Character" ToRole="BookOrder" />
+          <NavigationProperty Name="ClothesShape" Relationship="Self.FK_Character_ClothesShape" FromRole="Character" ToRole="ClothesShape" />
+          <NavigationProperty Name="EyesShape" Relationship="Self.FK_Character_EyesShape" FromRole="Character" ToRole="EyesShape" />
+          <NavigationProperty Name="FaceAdd" Relationship="Self.FK_Character_FaceAdd" FromRole="Character" ToRole="FaceAdd" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Character_Gender" FromRole="Character" ToRole="Gender" />
+          <NavigationProperty Name="Glass" Relationship="Self.FK_Character_Glass" FromRole="Character" ToRole="Glass" />
+          <NavigationProperty Name="HairColor" Relationship="Self.FK_Character_HairColor" FromRole="Character" ToRole="HairColor" />
+          <NavigationProperty Name="HairCut" Relationship="Self.FK_Character_HairCut" FromRole="Character" ToRole="HairCut" />
+          <NavigationProperty Name="SkinColor" Relationship="Self.FK_Character_SkinColor" FromRole="Character" ToRole="SkinColor" />
+        </EntityType>
+        <EntityType Name="ClothesShape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_ClothesShape" FromRole="ClothesShape" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="EyesShape">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_EyesShape" FromRole="EyesShape" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="FaceAdd">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_FaceAdd" FromRole="FaceAdd" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_Gender" FromRole="Gender" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="Glass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_Glass" FromRole="Glass" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="HairColor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_HairColor" FromRole="HairColor" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="HairCut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_HairCut" FromRole="HairCut" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="SkinColor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_SkinColor" FromRole="SkinColor" ToRole="Character" />
+        </EntityType>
+        <Association Name="FK_Character_BasicShape">
+          <End Role="BasicShape" Type="Self.BasicShape" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasicShape">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="BasicShapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookOrder_Character">
+          <End Role="Character" Type="Self.Character" Multiplicity="0..1" />
+          <End Role="BookOrder" Type="Self.BookOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookOrder">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_ClothesShape">
+          <End Role="ClothesShape" Type="Self.ClothesShape" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClothesShape">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="ClothesShapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_EyesShape">
+          <End Role="EyesShape" Type="Self.EyesShape" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EyesShape">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="EyesShapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_FaceAdd">
+          <End Role="FaceAdd" Type="Self.FaceAdd" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FaceAdd">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="FaceAddsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_Glass">
+          <End Role="Glass" Type="Self.Glass" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Glass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="GlasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_HairColor">
+          <End Role="HairColor" Type="Self.HairColor" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HairColor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="HairColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_HairCut">
+          <End Role="HairCut" Type="Self.HairCut" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HairCut">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="HairCutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_SkinColor">
+          <End Role="SkinColor" Type="Self.SkinColor" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkinColor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="SkinColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BabyFaceV0Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BasicShapes" EntityType="Self.BasicShape" />
+          <EntitySet Name="BookOrders" EntityType="Self.BookOrder" />
+          <EntitySet Name="Characters" EntityType="Self.Character" />
+          <EntitySet Name="ClothesShapes" EntityType="Self.ClothesShape" />
+          <EntitySet Name="EyesShapes" EntityType="Self.EyesShape" />
+          <EntitySet Name="FaceAdds" EntityType="Self.FaceAdd" />
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
+          <EntitySet Name="Glasses" EntityType="Self.Glass" />
+          <EntitySet Name="HairColors" EntityType="Self.HairColor" />
+          <EntitySet Name="HairCuts" EntityType="Self.HairCut" />
+          <EntitySet Name="SkinColors" EntityType="Self.SkinColor" />
+          <AssociationSet Name="FK_Character_BasicShape" Association="Self.FK_Character_BasicShape">
+            <End Role="BasicShape" EntitySet="BasicShapes" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookOrder_Character" Association="Self.FK_BookOrder_Character">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="BookOrder" EntitySet="BookOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_ClothesShape" Association="Self.FK_Character_ClothesShape">
+            <End Role="ClothesShape" EntitySet="ClothesShapes" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_EyesShape" Association="Self.FK_Character_EyesShape">
+            <End Role="EyesShape" EntitySet="EyesShapes" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_FaceAdd" Association="Self.FK_Character_FaceAdd">
+            <End Role="FaceAdd" EntitySet="FaceAdds" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_Gender" Association="Self.FK_Character_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_Glass" Association="Self.FK_Character_Glass">
+            <End Role="Glass" EntitySet="Glasses" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_HairColor" Association="Self.FK_Character_HairColor">
+            <End Role="HairColor" EntitySet="HairColors" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_HairCut" Association="Self.FK_Character_HairCut">
+            <End Role="HairCut" EntitySet="HairCuts" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_SkinColor" Association="Self.FK_Character_SkinColor">
+            <End Role="SkinColor" EntitySet="SkinColors" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BabyFaceV0ModelStoreContainer" CdmEntityContainer="BabyFaceV0Entities">
+          <EntitySetMapping Name="BasicShapes">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.BasicShape">
+              <MappingFragment StoreEntitySet="BasicShape">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookOrders">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.BookOrder">
+              <MappingFragment StoreEntitySet="BookOrder">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BabyName" ColumnName="BabyName" />
+                <ScalarProperty Name="CoverId" ColumnName="CoverId" />
+                <ScalarProperty Name="PagesCount" ColumnName="PagesCount" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Characters">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.Character">
+              <MappingFragment StoreEntitySet="Character">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="BasicShapeId" ColumnName="BasicShapeId" />
+                <ScalarProperty Name="HairCutId" ColumnName="HairCutId" />
+                <ScalarProperty Name="SkinColorId" ColumnName="SkinColorId" />
+                <ScalarProperty Name="HairColorId" ColumnName="HairColorId" />
+                <ScalarProperty Name="EyesShapeId" ColumnName="EyesShapeId" />
+                <ScalarProperty Name="GlasseId" ColumnName="GlasseId" />
+                <ScalarProperty Name="FaceAddsId" ColumnName="FaceAddsId" />
+                <ScalarProperty Name="ClothesShapeId" ColumnName="ClothesShapeId" />
+                <ScalarProperty Name="VectorImagePath" ColumnName="VectorImagePath" />
+                <ScalarProperty Name="ColoredImagePath" ColumnName="ColoredImagePath" />
+                <ScalarProperty Name="Thumptailpath" ColumnName="Thumptailpath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClothesShapes">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.ClothesShape">
+              <MappingFragment StoreEntitySet="ClothesShape">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EyesShapes">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.EyesShape">
+              <MappingFragment StoreEntitySet="EyesShape">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FaceAdds">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.FaceAdd">
+              <MappingFragment StoreEntitySet="FaceAdd">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Glasses">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.Glass">
+              <MappingFragment StoreEntitySet="Glass">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HairColors">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.HairColor">
+              <MappingFragment StoreEntitySet="HairColor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HairCuts">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.HairCut">
+              <MappingFragment StoreEntitySet="HairCut">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkinColors">
+            <EntityTypeMapping TypeName="BabyFaceV0Model.SkinColor">
+              <MappingFragment StoreEntitySet="SkinColor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

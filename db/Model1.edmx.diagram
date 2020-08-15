@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a0e68fe1af44fa7b3dc358deab73b6d" Name="Diagram1">
+        <EntityTypeShape EntityType="BabyFaceV0Model.BasicShape" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.BookOrder" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.Character" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.ClothesShape" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.EyesShape" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.FaceAdd" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.Gender" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.Glass" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.HairColor" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.HairCut" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BabyFaceV0Model.SkinColor" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_Character_BasicShape" ManuallyRouted="false" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_BookOrder_Character" ManuallyRouted="false" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_Character_ClothesShape" ManuallyRouted="false" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_Character_EyesShape" ManuallyRouted="false" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_Character_FaceAdd" ManuallyRouted="false" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_Character_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_Character_Glass" ManuallyRouted="false" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_Character_HairColor" ManuallyRouted="false" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_Character_HairCut" ManuallyRouted="false" />
+        <AssociationConnector Association="BabyFaceV0Model.FK_Character_SkinColor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
